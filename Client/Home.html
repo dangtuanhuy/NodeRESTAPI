@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Consume</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.4.2/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="product in products">{{ product.product_id }}</li>
+        </ul>
+    </div>
+    <div id="app">
+        
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            products: []
+        },
+        created() {
+            var vm = this
+            axios.get('http://localhost:3000/api/products')
+                .then(function (response) {
+                    vm.products = response.data.response;
+                    //console.log(response.data.response);
+                })
+        }
+    })
+</script>
+
+</html>
